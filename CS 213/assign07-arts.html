@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Monster's University
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="assign07.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Participate in art and theatrical performances and share your talents!">
+    <meta name="Monsters, university, art, painting, theatre, clubs, angst">
+    <script>
+        function handler(event) {
+            display(event)
+        }
+
+        function display(element) {
+            switch (element) {
+                case 'news':
+                    document.getElementById('news').style.display = 'block';
+                    document.getElementById('events').style.display = 'none';
+                    break;
+                case 'events':
+                    document.getElementById('news').style.display = 'none';
+                    document.getElementById('events').style.display = 'block';
+                    break;
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <img src="mulogo.jpg" class="rwd" id="header-img" alt="Monsters-university-logo">
+        <div id="banner">
+            <div id="menu">
+                <a href="assign07.html"> UNIVERSITY</a>
+                <a href="assign07-academics.html">ACADEMICS</a>
+                <a href="assign07-athletics.html">ATHLETICS</a>
+                <a href="assign07-arts.html">ARTS</a>
+            </div>
+        </div>
+        <img src="assign07pg4.jpg" class="banner-img" alt="Monsters-Universtiy-river">
+    </header>
+    <div id="content">
+        <div class="left">
+            <ul id="button-container">
+                <li id="button" onclick="handler('news')">News</li>
+                <li id="button" onclick="handler('events')">Events</li>
+            </ul>
+        </div>
+        <div id="art-news" class="right">
+            <div id="news">
+                <h3>
+                    Conductor Seeks Diversity
+                </h3>
+                <p>
+                    MU Orchestra conductor and artist-in-residence, Franz Ringeldopper, wants to explore new symphonic horizons -- but he's going to need some new talent in his emsemble. His recently-completed opus, "Anatomical Variations in B Minor" has a slight problem -- none of the existing student musicians can play it.<br><br> "I wrote each movement for a multi-limbed player. Two-armed instrumentalists are wonderful, but I couldn't keep from imagining what might be possible if a harpist had six arms or a cellist could draw three bows across the strings at once. I have heard it in my mind and won't rest until I hear it on my stage."
+                    <br><br> Interested students with time on their extra hands are encouraged to introduce themselves to Ringeldopper any weekday afternoon. </p>
+            </div>
+            <div id="events">
+                <h3>Making Beautiful <b>MU</b>sic Together</h3>
+                <p>
+                    Concert Choir Connects with Local Schools<br><br> By Thelonius Nelson<br><br> The Monsters University Concert Choir was recently featured as the "Harmony Highlight" at the Young Artists Festival, an annual gathering of local high school ensembles. Their set included selections from monster history: classical, folk, jazz, and blues.
+                    <br><br> During the concert, the students from local schools clapped, cheered and sang along. At the conclusion of their set, the choir led the audience in the beloved "Anthem of a Moonless Night."
+                    <br><br> "We are so pleased to host Monster University's Concert Choir and are lucky to have them present this special performance to our children," said Darlene McKelfresh, Director of Choral Programs for Monstropolis Unified Schools. "The Choir enchanted the audience, and gave each child a glimpse of musical excellence. We are so thankful."
+                    <br><br> The Monsters University Concert Choir is the premier choral ensemble at MU. </p>
+
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        1313 Disneyland Drive, Anaheim, CA 92802<br/>TEXT: (855) 808-7102<br/>CALL: (208) 867-5309<br/>EMAIL:ask@mu.edu
+        <br>Note: All content belongs to Disney/Pixar unless otherwise stated
+    </footer>
+</body>

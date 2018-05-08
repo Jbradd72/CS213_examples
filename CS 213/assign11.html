@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Mileage Calculator
+    </title>
+    <script>
+        function getFullUrl() {
+            //localhost
+            var base = "http://157.201.194.254/cgi-bin/ercanbracks/mileage/mileageAjaxJSON?";
+            var startCity = "startCity=" + document.getElementById("startCity").value + "&";
+            var startState = "startState=" + document.getElementById("startState").value + "&";
+            var endCity = "endCity=" + document.getElementById("endCity").value + "&";
+            var endState = "endState=" + document.getElementById("endState").value;
+
+            for (var i = 0; i < startCity.length; i++) {
+                if (startCity.charAt(i) == " ") {
+                    startCity = startCity.substr(0, i + 1) + startCity.charAt(i + 1).toUpperCase() + startCity.substr(i + 2);
+                }
+            }
+
+            for (var i = 0; i < endCity.length; i++) {
+                if (endCity.charAt(i) == " ") {
+                    endCity = endCity.substr(0, i + 1) + endCity.charAt(i + 1).toUpperCase() + endCity.substr(i + 2);
+                }
+            }
+
+
+            return (base + startCity + startState + endCity + endState);
+
+        }
+
+        function calculateMileage() {
+            var url = getFullUrl();
+
+            var httpRequest = new XMLHttpRequest();
+            var myJSON;
+            var myObj;
+
+            if (!httpRequest) {
+                alert('Error: Your browser does not support XML-HTTP');
+                return false;
+            } else {
+                httpRequest.onreadystatechange = function() {
+
+                    if (this.readyState == 4 && this.status == 200) {
+                        myJSON = httpRequest.responseText;
+                        myObj = JSON.parse(myJSON);
+                        if (myObj['trip'].miles == "Unknown") {
+                            var myString = "Sorry, that route is not in our database!"
+                        } else {
+                            var myString = "There are " + myObj['trip'].miles + " miles between <bold style='text-transform: capitalize;'>" + myObj['trip'].startcity +
+                                ", " + myObj['trip'].startstate + "</bold> and <bold style='text-transform: capitalize;'>" + myObj['trip'].endcity +
+                                ", " + myObj['trip'].endstate + "</bold>";
+                            myString += ".";
+
+                            myString += "<br/><br/>You can get there by: <br/>";
+
+                            for (c in myObj['trip'].tmode) {
+                                myString += myObj['trip'].tmode[c] + "<br/>";
+                            }
+
+                        }
+                        document.getElementById("miles2travel").innerHTML = myString;
+                        document.getElementById("miles2travel").style.border = "2px solid";
+                        document.getElementById("miles2travel").style.backgroundColor = "darkgrey";
+                    }
+
+                }
+                httpRequest.open("GET", url, true);
+                httpRequest.send();
+            }
+        }
+
+        function validate() {
+            var state1 = document.getElementById("startState").value;
+            var state2 = document.getElementById("endState").value;
+            var city1 = document.getElementById("startCity").value;
+            var city2 = document.getElementById("endCity").value;
+
+            if (city1.length == 0)
+                document.getElementById("startCity").style.backgroundColor = "indianred";
+            else
+                document.getElementById("startCity").style.backgroundColor = "";
+            if (city2.length == 0)
+                document.getElementById("endCity").style.backgroundColor = "indianred";
+            else
+                
+                document.getElementById("endCity").style.backgroundColor = "";
+
+            if (state1.length != 2 || !(state1.match(/^[a-zA-Z]/))) {
+                document.getElementById("startState").value = ""
+                document.getElementById("startState").placeholder = "Enter only 2 characters"
+                document.getElementById("startState").style.backgroundColor = "indianred";
+            } else {
+
+                document.getElementById("startState").style.backgroundColor = "";
+            }
+            if (state2.length != 2 || !(state2.match(/^[a-zA-Z]/))) {
+                document.getElementById("endState").value = ""
+                document.getElementById("endState").placeholder = "Enter only 2 characters"
+                document.getElementById("endState").style.backgroundColor = "indianred";
+            } else {
+
+                document.getElementById("endState").style.backgroundColor = "";
+            }
+            if (state1.length == 2 && state1.match(/[a-zA-Z]/) &&
+                state2.length == 2 && state2.match(/[a-zA-Z]/)) {
+                calculateMileage();
+                document.getElementById("startState").style.backgroundColor = "";
+                document.getElementById("endState").style.backgroundColor = "";
+
+            }
+
+        }
+
+    </script>
+    <style>
+        input {
+            margin: 15px;
+        }
+        
+        table {
+            margin: auto;
+        }
+        
+        button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        div {
+            max-width: 35%;
+            margin: auto;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+
+<body style="text-align: center; background-color:darkseagreen;">
+    <h1> Mileage Calculator</h1>
+
+    <form action="">
+        <table>
+            <tr>
+                <td>Starting City:</td>
+                <td> <input type="text" name="startCity" value="" id="startCity"><br/></td>
+
+
+                <td>Starting State:</td>
+                <td> <input type="text" name="startState" id="startState"><br/></td>
+            </tr>
+            <tr>
+                <td>Ending City:</td>
+                <td> <input type="text" name="endCity" value="" id="endCity"><br/></td>
+
+                <td>Ending State:</td>
+                <td> <input type="text" name="endState" id="endState"><br/></td>
+            </tr>
+
+        </table>
+    </form>
+
+    <button onclick="validate()">Calculate Mileage</button>
+
+    <div id="miles2travel"></div>
+
+</body>

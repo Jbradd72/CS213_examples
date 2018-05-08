@@ -1,0 +1,53 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    background-color: skyblue;
+}
+
+form {
+    background-color: cadetblue;
+    display: inline-block;
+    border-style: groove;
+    border-color: black;
+    width: 75%;
+}
+
+form input {
+    margin: 10px auto;
+}
+
+table {
+    text-align: left;
+    margin: auto;
+}
+
+#form {
+    text-align: center;
+}
+
+p {
+    display: inline;
+    color: red;
+}
+
+.error {
+    display: inline-block;
+    visibility: hidden;
+    font-size: .75em;
+}
+
+#address {
+    margin: 10px auto;
+}
+
+#radios {
+    margin: auto;
+    width: 25%;
+    text-align: left;
+}
+
+:focus {
+    background-color: lightgreen;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Purchase Confirmation
+    </title>
+    
+    <link rel="stylesheet" type="text/css" href="assign05.css">
+    <style>
+        form{
+            border:0;
+            background-color: transparent;
+        }
+        table{
+            border: 1.5px solid;
+            text-align: center;
+        }
+        tr, td{
+            padding:5px;
+        }
+    </style>
+</head>
+
+
+<body style="text-align: center">
+    <h1> Purchase Confirmation</h1>
+    <div>
+        Order Summary
+    <table><tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th>Credit Card Type</th>
+        <th>Credit Card Exp Date</th>
+        <th>Total</th>
+        </tr>
+        <tr><td>John Smith</td>
+        <td>3557 Yorktown Dr, Yuba City CA</td>
+        <td>530-812-2148</td>
+        <td>MasterCard</td>
+        <td>January 2020</td>
+        <td>197.23</td></tr></table>
+        <list>
+        </list>
+    </div>
+    
+    <form action="assign10_a.php" method="get">
+    <input style="background-color:green;color:lightgrey;" type="submit" name="submit" value ="Confirm">
+    <input style="background-color: red;color:lightgrey;" type="submit" name="submit" value ="Cancel Order"></form>
+    
+</body>

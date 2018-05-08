@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Registration
+    </title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        th{background-color: cornflowerblue;
+            
+        }
+        
+        h1{
+            font-family:cursive;
+        }
+        
+        table {
+            width:80%;
+            margin: auto;
+            margin-top: 2.5%;
+            background-color:aliceblue;
+        }
+        
+        #registration, #registration th, #registration td{
+            border: 0px;
+        }
+        
+        #registration th, #registration td{
+            margin:1px;
+        }
+        
+        input:focus, select:focus{
+            background-color:darkseagreen;
+        }
+        
+        button {
+            color:darkred;
+            font-weight: 900;
+            margin: 2.5%;
+            padding: 1%;
+            background-color: cornflowerblue;
+            border-radius: 100%;
+        }
+        
+        body {
+            text-align: center;
+            background-color: darksalmon;
+            
+            color: darkred;
+        }
+        
+        button:hover {
+            background-color: cadetblue;
+        }
+        
+        input,
+        select {
+            text-align: center;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+    </style>
+    <script>
+        function updateStudents() {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var table = "<tr><th>Name</th><th>ID</th><th>Type</th><th>Skill Level</th><th>Instrument</th><th>Building</th><th>Room Number</th><th>Time Slot</th></tr>";
+
+                    table += httpRequest.responseText;
+                    document.getElementById("students").innerHTML = table;
+                }
+            };
+
+
+            httpRequest.open("GET", "http://157.201.194.254/~jbradd/assign12.txt", true);
+            httpRequest.send();
+            
+        }
+
+        function checkType() {
+            if (document.getElementById("type").value == 'Duet') {
+                document.getElementById("2nd-person").style.display = "block";
+            }
+            
+            else{
+                document.getElementById("2nd-person").style.display = "none";
+            }
+
+        }
+
+        function validate() {
+            if (checkForm()) {
+                var url = "http://157.201.194.254/~jbradd/assign12.php?";
+                var fname1 = document.getElementById("fname").value;
+                url += "fname1=" + fname1 + "&";
+                var lname1 = document.getElementById("lname").value;
+                url += "lname1=" + lname1 + "&";
+                var id1 = document.getElementById("id").value;
+                url += "id1=" + id1 + "&";
+                var fname2 = document.getElementById("fname2").value;
+                url += "fname2=" + fname2 + "&";
+                var lname2 = document.getElementById("lname2").value;
+                url += "lname2=" + lname2 + "&";
+                var id2 = document.getElementById("id2").value;
+                url += "id2=" + id2 + "&";
+                var type = document.getElementById("type").value;
+                url += "type=" + type + "&";
+                var skill = document.getElementById("skill").value;
+                url += "skill=" + skill + "&";
+                var instrument = document.getElementById("instrument").value;
+                url += "instrument=" + instrument + "&";
+                var location = document.getElementById("location").value;
+                url += "location=" + location + "&";
+                var room = document.getElementById("room-no").value;
+                url += "room=" + room + "&";
+                var time = document.getElementById("time").value;
+                url += "time=" + time;
+
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function() {};
+                httpRequest.open("GET", url, true);
+                httpRequest.send();
+
+                updateStudents();
+                
+                document.getElementById("error").style.display = "none";
+                document.getElementById("2nd-person").style.display = "none";
+                document.getElementById("myForm").reset();
+
+            }
+        }
+
+        function checkForm() {
+
+
+            document.getElementById("error").style.display = "none";
+
+            if (document.getElementById("fname").value == "") {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+
+            if (document.getElementById("lname").value == "") {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+            if (document.getElementById("id").value == "") {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+            if (document.getElementById("type").value == "Duet") {
+
+                if (document.getElementById("fname2").value == "") {
+                    document.getElementById("error").style.display = "block";
+                    return false;
+                }
+
+                if (document.getElementById("lname2").value == "") {
+                    document.getElementById("error").style.display = "block";
+                    return false;
+                }
+
+                if (document.getElementById("id2").value == "") {
+                    document.getElementById("error").style.display = "block";
+                    return false;
+                }
+            }
+
+            if (document.getElementById("location").value == "") {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+
+
+            if (document.getElementById("room-no").value == "") {
+                document.getElementById("error").style.display = "block";
+                return false;
+            }
+
+            return true;
+
+        }
+
+    </script>
+
+</head>
+
+<body onload="updateStudents()">
+
+    <h1>
+        Festival Competition Registration
+    </h1>
+    <hr>
+    <p id="error" style="text-align: center; color:red; display:none;">Please fill out the entire form</p>
+    <form id ="myForm">
+        <table id="registration">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>ID Number</th>
+                <th>Performance Type</th>
+                <th>Skill Level</th>
+                <th>Instrument</th>
+                <th>Building</th>
+                <th>Room Number</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="fname" name="fname" value="" placeholder="First Name"></td>
+                <td><input type="text" id="lname" name="lname" value="" placeholder="Last Name"></td>
+                <td><input type="text" id="id" name="id" value="" placeholder="Student ID"></td>
+
+                <td><select id="type" name="type" onchange="checkType()">
+                    <option value ="Solo">Solo</option>
+                    <option value="Duet">Duet</option>
+                    <option value="Concerto">Concerto</option>
+                </select></td>
+                <td><select id="skill" name="skill">
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Pre-Advanced</option>
+                    <option>Advanced</option>
+                </select></td>
+                <td><select id="instrument" name="instrument">
+                    <option>Piano</option>
+                    <option>Voice</option>
+                    <option>String</option>
+                    <option>Organ</option>
+                    <option>Other</option>
+                </select></td>
+                <td><input type="text" id="location" value="" name="location" placeholder="Building"></td>
+                <td><input type="text" id="room-no" value="" name="room-no" placeholder="Room Number"></td>
+                <td><select id="time" name="time">
+                    <option value="8:00 AM">8:00 AM</option>
+                    <option value="8:15 AM">8:15 AM</option>
+                    <option value="8:30 AM">8:30 AM</option>
+                    <option value="8:45 AM">8:45 AM</option>
+                    <option value="9:00 AM">9:00 AM</option>
+                    <option value="9:15 AM">9:15 AM</option>
+                    <option value="9:30 AM">9:30 AM</option>
+                    <option value="9:45 AM">9:45 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="10:15 AM">10:15 AM</option>
+                    <option value="10:30 AM">10:30 AM</option>
+                    <option value="10:45 AM">10:45 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="11:15 AM">11:15 AM</option>
+                    <option value="11:30 AM">11:30 AM</option>
+                    <option value="11:45 AM">11:45 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="12:15 PM">12:15 PM</option>
+                    <option value="12:30 PM">12:30 PM</option>
+                    <option value="12:45 PM">12:45 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="1:15 PM">1:15 PM</option>
+                    <option value="1:30 PM">1:30 PM</option>
+                    <option value="1:45 PM">1:45 PM</option>
+            </select></td>
+            </tr>
+        </table>
+        <div id="2nd-person" style="display: none">
+            <h2> Partner's Information: </h2>
+            <table id="registration">
+                <tr><th>First Name</th><th>Last Name</th><th>ID Number</th></tr>
+                <td><input type="text" id="fname2" name="fname2" value="" placeholder="First Name"></td>
+                <td><input type="text" id="lname2" name="lname2" value="" placeholder="Last Name"></td>
+                <td><input type="text" id="id2" name="id2" value="" placeholder="Student ID"></td>
+            </table>
+
+        </div>
+        <br/>
+        <button type="button" onclick="validate()">Register</button>
+        <button type="reset">Clear Form</button>
+
+    </form>
+
+    <table id="students">
+    </table>
+</body>

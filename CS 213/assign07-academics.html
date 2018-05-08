@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Monster's University
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="assign07.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn the requirements and how to prepare for Admission, including getting advice from Admission counselors and receiving financial aid." />
+    <meta name="keywords" content="schools, scaring, engineering, liberal arts, monstrosities, science, business, students, Monsters, university, college, school, academics, campus" />
+
+    <script>
+        function handler(event) {
+            display(event)
+        }
+
+        function display(element) {
+            switch (element) {
+                case 'admissions':
+                    document.getElementById('admissions').style.display = 'block';
+                    document.getElementById('reqs').style.display = 'none';
+                    document.getElementById('aid').style.display = 'none';
+                    break;
+                case 'reqs':
+                    document.getElementById('admissions').style.display = 'none';
+                    document.getElementById('requirements').style.display = 'block';
+                    document.getElementById('aid').style.display = 'none';
+                    break;
+                case 'aid':
+                    document.getElementById('admissions').style.display = 'none';
+                    document.getElementById('requirements').style.display = 'none';
+                    document.getElementById('aid').style.display = 'block';
+                    break;
+
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <img src="mulogo.jpg" class="rwd" id="header-img" alt="Monsters-university-logo">
+        <div id="banner">
+            <div id="menu">
+                <a href="assign07.html"> UNIVERSITY</a>
+                <a href="assign07-academics.html">ACADEMICS</a>
+                <a href="assign07-athletics.html">ATHLETICS</a>
+                <a href="assign07-arts.html">ARTS</a>
+            </div>
+        </div>
+        <img src="assign07pg2.jpg" class="banner-img" alt="Monsters-Universtiy-hall">
+    </header>
+
+    <div id="content">
+        <div class="left">
+            <ul id="button-container">
+                <li id="button" onclick="handler('admissions')">Admissions</li>
+                <li id="button" onclick="handler('reqs')">Requirements</li>
+                <li id="button" onclick="handler('aid')">Financial Aid</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div id="admissions">
+                <h3>Admissions</h3>
+                <p>Monsters University looks forward to receiving every application, every letter of recommendation, and every excellent essay. MU is a place for self-discovery, curiosity, and scholarship. With unmatched class offerings, a multitude of majors, and a supportive and friendly campus environment, Monsters University is worthy of your attention.<br><br> Each year, over 26,000 high school and transfer monsters apply to MU, but only a fraction get admitted. Our methods are strenuous, but our tradition is truly great.<br><br> With the top scaring program in the country, along with four other academically rigorous schools (including notable programs in scream energy, door technology, and business), MU's academics are second-to-none.<br><br> But life is not lived solely in the classroom. Monsters University offers a holistic training for the mind, body, and spirit -- guiding students of all shapes, sizes, colors, and consistencies toward contributions to their communities, their fields of study, and their world.<br><br> While we can't tell you how to get into MU, our admissions team has provided some advice throughout this site on how to put your best foot (or claw, hoof, or flipper) forward.</p>
+            </div>
+
+            <div id="requirements" style="display:none">
+                <h3>Admissions Requirements and Advice</h3>
+                <p>
+                    To be considered for admission, every prospective student must submit a completed application, a validated MAT score, and a special essay on the topic of "What I learned when I wasn't learning -- the value of education outside the classroom."
+                </p>
+
+                <h3>MAT Scores</h3>
+                <p>
+                    A validated score on the Monsters Aptitude Test is required as a part of a multi-pronged evaluation process for applicants to MU. While there is no minimum score to be considered for admission, the median score of all admitted students is in the top quartile of all MAT scores each year. <br><br> The best approach to success on the MAT is to complete several practice tests in order to become fully proficient and completely comfortable with the question formats. <br><br> While Monsters University does not endorse one particular preparation method, practice testing is an unquestionably beneficial.
+                    <br><br> While you wait for your designated test date to arrive, try out this sample MAT question:
+                    <br><br> 100 furry sophomores meet for five minutes in the Quad. Four different fur colors are represented. 50% of the students are blue, 30% green, 15% red, and 5% orange. Between the 100 students are 644 arms. Assuming the arms are proportionately distributed, what is the probability that a randomly observed high five will be between a furry green hand and a furry red one?
+                    <br><br>&emsp; A. 18%<br>&emsp; B. 22%<br> &emsp; C. less than 1%<br>&emsp; D. 4.5%<br>&emsp; E. 13.92%<br>
+                </p>
+            </div>
+
+            <div id="aid" style="display:none">
+                <h3>Financial Aid</h3>
+                <p>The Monster University Financial Aid division exists for one purpose: to make college affordable for every admitted student who wants to enroll at MU. Many factors are taken into account when determining a student's financial aid needs. More than half of all MU students receive some form of financial assistance.
+                    <br><br> Whether you qualify for an academic award or need-based financial assistance, we have a solution that will make choosing MU a no-brainer.
+                    <br><br> Please contact Financial Aid about your desire for assistance immediately upon being admitted.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        1313 Disneyland Drive, Anaheim, CA 92802<br/>TEXT: (855) 808-7102<br/>CALL: (208) 867-5309<br/>EMAIL:ask@mu.edu
+        <br>Note: All content belongs to Disney/Pixar unless otherwise stated
+    </footer>
+</body>

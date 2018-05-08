@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        AJAX
+    </title>
+    <script>
+        var httpRequest;
+
+        function alertContents() {
+            if (this.readyState == 4) {
+
+                if (this.status == 200) {
+                    document.getElementById("here").innerHTML = httpRequest.responseText;
+                }
+
+
+            }
+        }
+
+        function makeRequest(url) {
+
+            switch (url) {
+                case 'mexico':
+                    document.getElementById("here").style.backgroundColor = "lightgreen";
+                    break;
+                case 'usa':
+                    document.getElementById("here").style.backgroundColor = 'lightblue';
+                    break;
+                case 'russia':
+                    document.getElementById("here").style.backgroundColor = 'white';
+                    break;
+                case 'canada':
+                    document.getElementById("here").style.backgroundColor = 'lightcoral';
+                    break;
+            }
+
+            if (url != "") {
+                var filename = url + ".txt";
+                var location = 'http://157.201.194.254/~ercanbracks/' + filename;
+                httpRequest = false;
+                httpRequest = new XMLHttpRequest();
+
+                if (!httpRequest) {
+                    alert('Error: Your browser does not support XML-HTTP');
+                    return false;
+                } else {
+                    httpRequest.onreadystatechange = alertContents;
+                    httpRequest.open("GET", location, true);
+                    httpRequest.send();
+                }
+            }
+        }
+
+        function makeJSONRequest() {
+            var url = document.getElementById("textInput").value;
+            if (url != "" && url[0] != 'h') {
+                var location = 'http://157.201.194.254/~ercanbracks/' + url;
+                var myJSON;
+                var myObj;
+                httpRequest = false;
+                httpRequest = new XMLHttpRequest();
+
+                if (!httpRequest) {
+                    alert('Error: Your browser does not support XML-HTTP');
+                    return false;
+                } else {
+                    httpRequest.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+
+                            if (this.status == 200) {
+                                myJSON = httpRequest.responseText;
+                                myObj = JSON.parse(myJSON);
+                                var list = "<table border ='1'><tr><th>Name</th><th>Address</th><th>Major</th><th>GPA</th>";
+                                var x;
+                                for (x in myObj.students) {
+                                    list += "<tr>"
+                                    var name = myObj.students[x].first + " " + myObj.students[x].last;
+                                    list += "<td>" + name + "</td>"
+                                    var address = "";
+                                    var c;
+                                    for (c in myObj.students[x].address) {
+                                        address += myObj.students[x].address[c] + " ";
+                                    }
+                                    list += "<td>" + address + "</td>"
+                                    var major = myObj.students[x].major;
+                                    list += "<td>" + major + "</td>"
+                                    var gpa = myObj.students[x].gpa;
+                                    list += "<td>" + gpa + "</td></tr>"
+                                }
+                                document.getElementById("json-div").innerHTML = list + "</table>";
+                            }
+                        }
+                    }
+                    httpRequest.open("GET", location, true);
+                    httpRequest.send();
+                }
+            }
+        }
+
+    </script>
+
+    <style>
+        #json-div {
+            height: 300px;
+            max-width: 400px;
+            border-style: solid;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        #text-input {
+            margin-bottom: 10px;
+        }
+        
+        body {
+            margin: auto;
+            text-align: center;
+            background-color: bisque;
+        }
+
+    </style>
+</head>
+
+<body style="margin:auto; text-align: center;">
+    <h2>Select a Country to see it's Top 10 Most Populated Cities</h2>
+    <textarea id="here" disabled rows="11" cols="29"></textarea>
+    <select style="display: block; margin:auto;" id="country" onchange="makeRequest(this.value)">
+        <option value=""> </option>
+        <option value="usa" >USA</option>
+        <option value="canada" >Canada</option>
+        <option value="mexico" >Mexico</option>
+        <option value="russia" >Russia</option>
+        </select>
+
+    <h2>Select a Student List to Display It</h2>
+    <input type="text" id="textInput" value="json.txt">
+    <button onclick="makeJSONRequest()">Load JSON File</button>
+    <div id="json-div"></div>
+
+
+</body>

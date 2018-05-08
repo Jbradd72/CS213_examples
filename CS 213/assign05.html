@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Checkout
+    </title>
+
+    <h1>
+        Checkout
+    </h1>
+
+    <link rel="stylesheet" type="text/css" href="assign05.css">
+
+    <script>
+        function focus1() {
+            document.getElementById("fname").focus();
+        }
+
+        function resetBackground(id) {
+            document.getElementById(id).style.backgroundColor = "";
+        }
+
+        function validate() {
+            if (!chkPhone())
+                return false;
+            if (!chkCardNo())
+                return false;
+            if (!chkExpDate())
+                return false;
+            var fname = document.getElementById("fname");
+            var lname = document.getElementById("lname");
+            var address = document.getElementById("address");
+            var phone = document.getElementById("phone-number");
+            var credit = document.getElementById("card-no");
+            var expdate = document.getElementById("exp-date");
+
+
+
+            if (fname.value == "") {
+                fname.focus();
+                fname.style.backgroundColor = "red";
+                return false;
+            }
+            if (lname.value == "") {
+                lname.focus();
+                lname.style.backgroundColor = "red";
+                return false;
+            }
+            if (address.value == "") {
+                address.focus();
+                address.style.backgroundColor = "red";
+                return false;
+            }
+            if (phone.value == "") {
+                phone.focus();
+                phone.style.backgroundColor = "red";
+                return false;
+            }
+            if (credit.value == "") {
+                credit.focus();
+                credit.style.backgroundColor = "red";
+                return false;
+            }
+            if (expdate.value == "") {
+                expdate.focus();
+                expdate.style.backgroundColor = "red";
+                return false;
+            }
+
+            return true;
+        }
+
+        function chkPhone() {
+            var phone = document.getElementById("phone-number");
+            var pos = phone.value.search(/^\d{3}-\d{3}-\d{4}/);
+
+            if (pos == -1) {
+
+                phone.focus();
+                phone.style.backgroundColor = "red";
+                document.getElementById("phone-error").style.visibility = "visible";
+                return false;
+
+            }
+
+            if (pos != -1) {
+                phone.style.backgroundColor = "";
+                document.getElementById("phone-error").style.visibility = "hidden";
+                return true;
+            }
+        }
+
+        function chkCardNo() {
+            var num = document.getElementById("card-no");
+            var pos = num.value.search(/^\d{4}\s\d{4}\s\d{4}\s\d{4}/);
+
+            if (pos == -1) {
+                num.focus();
+                num.style.backgroundColor = "red";
+                document.getElementById("card-error").style.visibility = "visible";
+                return false;
+            }
+
+            if (pos != -1) {
+                num.style.backgroundColor = "";
+                document.getElementById("card-error").style.visibility = "hidden";
+                return true;
+            }
+
+        }
+
+        function chkExpDate() {
+            var date = document.getElementById("exp-date");
+            var pos = date.value.search(/^\d{2}\/\d{4}/)
+            var darr = date.value.split("/");
+            var months = darr[0];
+            var year = darr[1];
+
+            if (pos == -1) {
+                date.style.backgroundColor = "red";
+                date.focus();
+                document.getElementById("date-error").style.visibility = "visible";
+                return false;
+            }
+
+            if (pos != -1 && (months < 0 || months > 12 || year < 2017)) {
+                date.style.backgroundColor = "red";
+                date.focus();
+                document.getElementById("date-error").style.visibility = "visible";
+                return false;
+            }
+
+            if (pos != -1 && months <= 12 && months > 0 && year > 2016) {
+                date.style.backgroundColor = "";
+                document.getElementById("date-error").style.visibility = "hidden";
+                return true;
+            }
+        }
+
+        function calc() {
+            var total = 0;
+
+            if (document.getElementById("e-photo").checked) {
+                total += 149.99
+            }
+
+            if (document.getElementById("e-video").checked) {
+                total += 249.99
+            }
+
+            if (document.getElementById("w-photo").checked) {
+                total += 499.99
+            }
+
+            if (document.getElementById("w-video").checked) {
+                total += 799.99
+            }
+
+            if (document.getElementById("family").checked) {
+                total += 99.99
+            }
+
+            document.getElementById("total").value = (total * 1.07).toFixed(2);
+        }
+
+    </script>
+</head>
+
+<body onload="focus1()">
+    <div id="form">
+        <form id="payment-form" onsubmit="return validate()" onreset="handler('reset')" action="">
+            First Name<br>
+            <input type="text" id="fname" placeholder="First Name" value="" onblur="resetBackground('fname')"><br>Last Name<br>
+            <input type="text" id="lname" placeholder="Last Name" value="" onblur="resetBackground('lname')"><br>Address<br>
+            <textarea id="address" value="" onblur="resetBackground('address')" rows="10" cols="45"> </textarea>
+            <br>
+            <table>
+
+                <tr>
+                    <td> <input id="e-photo" type="checkbox" onclick="handler('calc')" name="items-bought">Engagement Photos $149.99</td>
+                </tr>
+                <tr>
+                    <td> <input id="e-video" type="checkbox" onclick="handler('calc')" name="items-bought">Engagement Video - $249.99</td>
+                </tr>
+                <tr>
+                    <td> <input id="w-photo" type="checkbox" onclick="handler('calc')" name="items-bought">Wedding Photos - $499.99</td>
+                </tr>
+                <tr>
+                    <td> <input id="w-video" type="checkbox" onclick="handler('calc')" name="items-bought">Wedding Video - $799.99</td>
+                </tr>
+                <tr>
+                    <td> <input id="family" type="checkbox" onclick="handler('calc')" name="items-bought">Family Package -$99.99</td>
+                </tr>
+
+            </table>
+            Total: $<input type="text" id="total" value="0.00" disabled>
+            <br> Phone Number <br>
+            <p id="phone-error" class="error"> Error: Phone Number should be in form: 123-456-7890 </p><br>
+            <input type="text" id="phone-number" onchange="handler('phone')" placeholder="###-###-####" value="">
+
+            <div style="margin:auto;">
+                <div id="radios">
+                    <input type="radio" name="card-type" value="MasterCard">Visa<br>
+                    <input type="radio" name="card-type" value="Visa"><span>MasterCard</span><br>
+                    <input type="radio" name="card-type" value="American Express">American Express<br>
+                </div>
+            </div><br> Card Number<br>
+            <p id="card-error" class="error"> Error: Card Number should be in form: 1234 1234 1234 1234</p><br>
+            <input type="text" id="card-no" onchange="handler('card')" maxlength="19" value="">
+            <br> Expiration Date<br>
+            <p id="date-error" class="error"> Error: Expiration Date is incorrect value. </p><br>
+            <input type="text" id="exp-date" placeholder="MM/YYYY" value="" onchange="handler('date')"><br>
+            <input type="reset">
+            <input type="submit" value="Submit" onclick="handler('submit')">
+        </form>
+    </div>
+
+</body>
+
+<script>
+    function handler(event) {
+        switch (event) {
+            case "submit":
+                validate();
+                break;
+            case 'reset':
+                document.getElementById("fname").focus();
+                break;
+            case 'phone':
+                chkPhone();
+                break;
+            case 'date':
+                chkExpDate();
+                break;
+            case 'card':
+                chkCardNo();
+                break;
+            case 'calc':
+                calc();
+                break;
+
+        }
+
+    }
+
+</script>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Directory Listing
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="assign04.css">
+    <script>
+        function getDirectories() {
+            var httpRequest = new XMLHttpRequest();
+            var myJSON;
+            var myObj;
+
+            if (!httpRequest) {
+                alert('Error: Your browser does not support XML-HTTP');
+                return false;
+            } else {
+
+                httpRequest.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        myJSON = httpRequest.responseText;
+                        myObj = JSON.parse(myJSON);
+
+                        var tableList = "<table style=\"margin:auto\"border ='1'><tr><th>File Name</th><th>File Type</th><th>CWD</th><th>Action</th>";
+                        var x;
+                        for (x in myObj) {
+                            tableList += "<tr>";
+                            var fName = myObj[x].fileName;
+                            tableList += "<td>" + fName + "</td>";
+                            var fType = myObj[x].fileType;
+                            tableList += "<td>" + fType + "</td>";
+                            var cwd = myObj[x].cwd;
+                            tableList += "<td>" + cwd + "</td>";
+                            if (fType != 'dir') {
+                                tableList += "<td><button style=\"padding:0%\" onclick = \"window.location = \'" +
+                                    fName + "\' \">Click to Display</button></td></tr>"
+                            } else {
+                                tableList += "<td></td></tr>"
+                            }
+
+                        }
+                        document.getElementById("json-div").innerHTML = tableList + "</table>";
+
+                    }
+                }
+                httpRequest.open("GET", "assign09.php", true);
+                httpRequest.send();
+            }
+        }
+
+    </script>
+    <style>
+        button {
+            border: 3px solid cyan;
+            border-radius: 12px;
+            padding: 1%;
+            background-color: cyan;
+        }
+        
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: darkgray;
+            color: navy;
+        }
+        
+        tr:hover {
+            background-color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        Assignment 9 Part 2
+    </h1>
+    <div style="margin:auto; text-align: center;">
+        <button #id="button" style="margin-bottom:1em" onclick="window.location = 'mortgage.html'">Mortgage Calculator</button>
+        <button #id="button" style="margin-bottom:1em" onclick="window.location = 'assign09.html'">Load Directory</button>
+    </div>
+    <h2 style="text-align: center">Load Directory</h2>
+
+    <div style="margin:auto; text-align: center;">
+        <button style="margin-bottom:1em" onclick="getDirectories()">Load Directory</button>
+    </div>
+    <div id="json-div" style="margin:auto"></div>
+</body>

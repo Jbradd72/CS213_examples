@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Monster's University
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="assign07.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take your place amongst the best, brightest, and most talented athletes in the world!">
+    <meta name="keywords" content="Sports, Athletics, Football, Chess, Swimming, Rowing, tough, guys, champions, win, winning,  ">
+    <script>
+        function handler(event) {
+            display(event)
+        }
+
+        function display(element) {
+            switch (element) {
+                case 'football':
+                    document.getElementById('football').style.display = 'block';
+                    document.getElementById('rowing').style.display = 'none';
+                    document.getElementById('swim').style.display = 'none';
+                    document.getElementById('chess').style.display = 'none';
+                    break;
+                case 'rowing':
+                    document.getElementById('football').style.display = 'none';
+                    document.getElementById('rowing').style.display = 'block';
+                    document.getElementById('swim').style.display = 'none';
+                    document.getElementById('chess').style.display = 'none';
+                    break;
+                case 'swim':
+                    document.getElementById('football').style.display = 'none';
+                    document.getElementById('rowing').style.display = 'none';
+                    document.getElementById('swim').style.display = 'block';
+                    document.getElementById('chess').style.display = 'none';
+                    break;
+                case 'chess':
+                    document.getElementById('football').style.display = 'none';
+                    document.getElementById('rowing').style.display = 'none';
+                    document.getElementById('swim').style.display = 'none';
+                    document.getElementById('chess').style.display = 'block';
+                    break;
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <img src="mulogo.jpg" class="rwd" id="header-img" alt="Monsters-university-logo">
+        <div id="banner">
+            <div id="menu">
+                <a href="assign07.html"> UNIVERSITY</a>
+                <a href="assign07-academics.html">ACADEMICS</a>
+                <a href="assign07-athletics.html">ATHLETICS</a>
+                <a href="assign07-arts.html">ARTS</a>
+            </div>
+        </div>
+        <img src="assign07pg3.jpg" class="banner-img" alt="Monsters-University-town">
+    </header>
+
+    <div id="content">
+        <div class="left">
+            <ul id="button-container">
+                <li id="button" onclick="handler('football')">Football</li>
+                <li id="button" onclick="handler('rowing')">Rowing</li>
+                <li id="button" onclick="handler('swim')">Swimming</li>
+                <li id="button" onclick="handler('chess')">Chess</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div id="football">
+                <h3>Football</h3>
+                <p>The MU faithful were put to the test last year, losing the conference championship with a "Hail Scary" pass from Fear Tech. But MU is back this year with an excellent new recruitment class -- including three top-tier high school standouts: Bart Gates (quarterback), Uriah Pemberslime (fullback), and Harry Phiegel (wide receiver). The entire university community is buzzing with the prospect of Gates throwing to Phiegel for four years of touchdowns. </p>
+            </div>
+
+            <div id="rowing" style="display:none">
+                <h3>Rowing</h3>
+                <p>
+                    The crown jewel of our athletics program, MU has won the national title in crew 17 of the last 20 years. Whether one-monster, six-arm or six-monster, one-arm competition, MU is the class of the competition.
+                </p>
+            </div>
+
+            <div id="swim" style="display:none">
+                <h3>Swimming</h3>
+                <p>Led by world-renowned coach Mitch Badwater, the MU swim team has literally swam laps around the competition. Last year, the swim team lost its senior captain Timbo "The Motor" McGee, whose worm-like body and 7 legs propelled him to 3 "Swimmer of the Year" trophies. </p>
+            </div>
+
+            <div id="chess" style="display:none">
+                <h3>Chess Team</h3>
+                <p>
+                    The chess team is back with a vengeance this year, after a crushing injury-laden season last year. With more than half the team injured in a mid-season matchup with Fear Tech, the bench reserves made a fine run, completing the season with three checkmates, all within the last few seconds of regulation.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        1313 Disneyland Drive, Anaheim, CA 92802<br/>TEXT: (855) 808-7102<br/>CALL: (208) 867-5309<br/>EMAIL:ask@mu.edu
+        <br>Note: All content belongs to Disney/Pixar unless otherwise stated
+    </footer>
+</body>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Ajax Practice
+    </title>
+
+    <script>
+        var httpRequest;
+
+
+        function alertContents() {
+            alert(httpRequest.readyState);
+            if (this.readyState == 4) {
+
+                if (this.status == 200) {
+                    document.getElementById("here").innerHTML = httpRequest.responseText;
+                } else {
+                    alert('didnt work');
+                }
+
+
+            }
+        }
+
+        function makeRequest(url) {
+            alert(url);
+            var location = url;
+            if (url == 'file') {
+                location = document.getElementById('fileInput').value;
+            }
+            httpRequest = false;
+            httpRequest = new XMLHttpRequest();
+
+            if (!httpRequest) {
+                alert('Error: Your browser does not support XML-HTTP');
+                return false;
+            } else {
+                httpRequest.onreadystatechange = alertContents;
+                httpRequest.open("GET", location, true);
+                httpRequest.send();
+            }
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+    <h1 style="text-align: center;"> Ajax Practice</h1>
+
+    <div id="here" style="max-width:60%; margin:auto; height:auto; border-style:solid;">
+
+    </div>
+
+    <div style="text-align: center">
+        <button onclick="makeRequest('http://157.201.194.254/~ercanbracks/studentList.html')"> List 1 </button>
+        <button onclick="makeRequest('http://157.201.194.254/~ercanbracks/studentList1.html')"> List 2 </button>
+    </div>
+
+    <input type="text" id="fileInput" placeholder="Put a filename here">
+    <button onclick="makeRequest('file')">Load File</button>
+
+</body>

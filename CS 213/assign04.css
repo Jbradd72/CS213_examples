@@ -1,0 +1,38 @@
+
+button {
+    border: 3px solid cyan ;
+    border-radius:12px;
+    padding:3%;
+    background-color:cyan;
+}
+
+div {
+    max-width: 50%;
+}
+
+body {
+    background-color:royalblue;
+    text-align: center;
+    margin: auto;
+}
+
+#mortgage-calculator {
+    text-align: center;
+}
+
+form {
+    background-color: cadetblue;
+    display: inline-block;
+    border-style: groove;
+    border-color: black;
+}
+
+#result {
+    display: inline-flex;
+    border-style: groove;
+    background-color: gold;
+}
+
+:focus {
+    background-color: lightgreen;
+}

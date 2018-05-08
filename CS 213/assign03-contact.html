@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        Assignment 03
+    </title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <style>
+        h2 {
+            text-align: center;
+            font-family: arial;
+            margin-top: 50px;
+        }
+        
+        body p {
+            text-align: center;
+        }
+        
+        #contact-form {
+            display: block;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: darksalmon;
+        }
+        
+        #fname {
+            margin-right: 4px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <section>
+            <img src="lookforthelight.png" alt="logo" id="logo">
+        </section>
+        <nav id="main-nav">
+            <ul style="color:navy">
+                <li><a href="assign03.html"> Home </a></li>
+                <li> | </li>
+                <li> <a href="assign03-contact.html"> Book Us </a></li>
+            </ul>
+            <ul id="social-media">
+                <li>
+                    <a href="https://www.facebook.com/lookforthelight"><img id="facebook" src="facebook.png" alt="facebook"></a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/lookforthelightphotovideo"><img id="instagram" src="instagram.png" alt="instagram"></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <h2 style="font-family:sans-serif;">
+        Book Us
+    </h2>
+
+    <p style="font-family:serif; font-size:1.1em">
+        Well I, for one, am glad you've made it here.<br> Let's set up a shoot and capture your closest moments.
+    </p>
+    <div id="contact-form">
+        <form action="">
+            <input type="text" placeholder="First Name*" name="fname" required size="39;" id="fname">
+            <input type="text" placeholder="Last Name*" name="lname" required size="40;"><br><br>
+            <input type="text" placeholder="Email Address*" name="email" required size="85"><br><br>
+            <input type="text" placeholder="Subject*: Wedding, Engagement, Pregnancy, etc." name="subject" required size="85"><br><br>
+            <input type="text" placeholder="Message" name="message" size="85"><br><br>
+            <input type="text" placeholder="Location" name="location" size="85"><br><br>
+            <p style="margin:0;"> Date of Event:</p><br>
+            <input type="date" placeholder="mm/dd/yyyy" name="date"><br><br>
+            <textarea placeholder="How did you hear about us?" name="referral" rows="10" cols="40"></textarea><br><br>
+            <input type="text" placeholder="Ideal Budget" name="budget" size="40"><br><br>
+            <input type="submit"><input type="reset">
+        </form>
+    </div>
+
+    <footer>
+        <p id="copyright">&copy; Look For the Light Photo+Video<br>Website By: Jeff Bradley
+        </p>
+    </footer>
+</body>
